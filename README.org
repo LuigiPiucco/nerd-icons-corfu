@@ -1,0 +1,34 @@
+#+title: nerd-icons-corfu.el - Icons for corfu via nerd-icons
+#+author: Luigi Sartor Piucco
+#+language: en
+
+[[https://melpa.org/#/nerd-icons-corfu][file:https://melpa.org/packages/nerd-icons-corfu-badge.svg]]
+
+Nerd-icons-corfu.el is a library for adding icons to completions in [[https://github.com/minad/corfu][corfu]]. It
+uses [[https://github.com/rainstormstudio/nerd-icons.el][nerd-icons.el]] under the hood and, as such, works on both GUI and terminal.
+Below if a screenshot of the GUI version.
+
+[[file:screenshots/gui.png]]
+
+Note that you need a [[https://www.nerdfonts.com/#home][Nerd Font]] installed for it to work.
+
+* Usage
+~nerd-icons-corfu~ is (going to be) on [[https://melpa.org/#/nerd-icons-corfu][Melpa]]. You can install it with built-in
+~M-x package-install~, loading it like:
+#+begin_src emacs-lisp
+(require 'nerd-icons)
+#+end_src
+
+To use it, add ~nerd-icons-corfu-formatter~ to ~corfu-margin-formatters~, and
+maybe tweak the icons to your linking in ~nerd-icons-corfu-mapping~:
+#+begin_src emacs-lisp
+(add-to-list 'corfu-margin-formatters #'nerd-icons-corfu-formatter)
+
+;; Optionally:
+(setq nerd-icons-corfu-mapping
+      `((array ,(nerd-icons-codicon "nf-cod-symbol_array") :face font-lock-type-face)
+        (boolean ,(nerd-icons-codicon "nf-cod-symbol_boolean") :face font-lock-builtin-face)
+        ;; ...
+        (t ,(nerd-icons-codicon "nf-cod-code") :face font-lock-warning-face)))
+        ;; Remember to add an entry for `t', the library uses that as default.
+#+end_src
