@@ -73,10 +73,14 @@ KIND is a symbol determining what the completion is, and comes from calling the
 to use, usually as a character from a `nerd-icons' symbol font. See that
 package for how to get these. Note that it can be simple text if that is
 preferred. FACE, if present, is applied to the icon, mainly for its color. The
-special `t' symbol should be used for KIND to represent the default icon, and
+special t symbol should be used for KIND to represent the default icon, and
 must be present.")
 
 (defun nerd-icons-corfu-formatter (metadata)
+  "A margin formatter for corfu, adding icons.
+
+It receives METADATA and outputs a function that takes a candidate and returns
+the icon."
   (when-let ((kindfunc (or (plist-get completion-extra-properties :company-kind)
                            (assq 'company-kind metadata))))
     (lambda (cand)
