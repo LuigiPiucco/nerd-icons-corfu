@@ -4,7 +4,7 @@
 
 [[https://melpa.org/#/nerd-icons-corfu][file:https://melpa.org/packages/nerd-icons-corfu-badge.svg]]
 
-Nerd-icons-corfu.el is a library for adding icons to completions in [[https://github.com/minad/corfu][corfu]]. It
+Nerd-icons-corfu.el is a library for adding icons to completions in [[https://github.com/minad/corfu][Corfu]]. It
 uses [[https://github.com/rainstormstudio/nerd-icons.el][nerd-icons.el]] under the hood and, as such, works on both GUI and terminal.
 Below if a screenshot of the GUI version.
 
@@ -14,10 +14,7 @@ Note that you need a [[https://www.nerdfonts.com/#home][Nerd Font]] installed fo
 
 * Usage
 ~nerd-icons-corfu~ is (going to be) on [[https://melpa.org/#/nerd-icons-corfu][Melpa]]. You can install it with built-in
-~M-x package-install~, loading it like:
-#+begin_src emacs-lisp
-(require 'nerd-icons)
-#+end_src
+~M-x package-install~.
 
 To use it, add ~nerd-icons-corfu-formatter~ to ~corfu-margin-formatters~, and
 maybe tweak the icons to your linking in ~nerd-icons-corfu-mapping~:
