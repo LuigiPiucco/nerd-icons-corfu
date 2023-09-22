@@ -1,4 +1,4 @@
-;;; nerd-icons-corfu.el --- Icons for corfu via nerd-icons -*- lexical-binding: t; -*-
+;;; nerd-icons-corfu.el --- Icons for Corfu via nerd-icons -*- lexical-binding: t; -*-
 ;;
 ;; Copyright (C) 2023 Luigi Sartor Piucco
 ;;
@@ -8,21 +8,19 @@
 ;; Version: 0.1.0
 ;; Keywords: convenience, files, icons
 ;; Homepage: https://github.com/LuigiPiucco/nerd-icons-corfu
-;; Package-Requires: ((emacs "25.1") (nerd-icons "0.1.0"))
+;; Package-Requires: ((emacs "27.1") (nerd-icons "0.1.0"))
 ;;
 ;; This file is not part of GNU Emacs.
 ;;
 ;;; Commentary:
 ;;
-;; Introduces a margin formatter for corfu which adds icons. The icons are
+;; Introduces a margin formatter for Corfu which adds icons. The icons are
 ;; configurable, but should be text icons provided by the icons fonts in
 ;; `nerd-icons'.
 ;;
 ;; To use, install the package and add the following to your init:
 ;;
-;; #+begin_src emacs-lisp
 ;; (add-to-list 'corfu-margin-formatters #'nerd-icons-corfu-formatter)
-;; #+end_src
 ;;
 ;;; Code:
 
@@ -76,13 +74,13 @@ preferred. FACE, if present, is applied to the icon, mainly for its color. The
 special t symbol should be used for KIND to represent the default icon, and
 must be present.")
 
+;;;###autoload
 (defun nerd-icons-corfu-formatter (metadata)
-  "A margin formatter for corfu, adding icons.
+  "A margin formatter for Corfu, adding icons.
 
 It receives METADATA and outputs a function that takes a candidate and returns
 the icon."
-  (when-let ((kindfunc (or (plist-get completion-extra-properties :company-kind)
-                           (assq 'company-kind metadata))))
+  (when-let ((kindfunc (plist-get completion-extra-properties :company-kind)))
     (lambda (cand)
       (let* ((kind (funcall kindfunc cand))
              (icon-entry (assq (or kind t) nerd-icons-corfu-mapping))
