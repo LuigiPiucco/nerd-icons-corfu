@@ -1,7 +1,8 @@
 ;;; nerd-icons-corfu.el --- Icons for Corfu via nerd-icons -*- lexical-binding: t; -*-
-;;
+
 ;; Copyright (C) 2023 Luigi Sartor Piucco
-;;
+;; SPDX-License-Identifier: GPL-3.0-or-later
+
 ;; Author: Luigi Sartor Piucco <luigipiucco@gmail.com>
 ;; Maintainer: Luigi Sartor Piucco <luigipiucco@gmail.com>
 ;; Created: September 21, 2023
@@ -9,9 +10,22 @@
 ;; Keywords: convenience, files, icons
 ;; Homepage: https://github.com/LuigiPiucco/nerd-icons-corfu
 ;; Package-Requires: ((emacs "27.1") (nerd-icons "0.1.0"))
-;;
+
 ;; This file is not part of GNU Emacs.
-;;
+
+;; This program is free software: you can redistribute it and/or modify
+;; it under the terms of the GNU General Public License as published by
+;; the Free Software Foundation, either version 3 of the License, or
+;; (at your option) any later version.
+
+;; This program is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;; GNU General Public License for more details.
+
+;; You should have received a copy of the GNU General Public License
+;; along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
 ;;; Commentary:
 ;;
 ;; Introduces a margin formatter for Corfu which adds icons. The icons are
@@ -21,7 +35,7 @@
 ;; To use, install the package and add the following to your init:
 ;;
 ;; (add-to-list 'corfu-margin-formatters #'nerd-icons-corfu-formatter)
-;;
+
 ;;; Code:
 
 (require 'nerd-icons)
