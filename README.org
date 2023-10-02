@@ -23,9 +23,11 @@ maybe tweak the icons to your linking in ~nerd-icons-corfu-mapping~:
 
 ;; Optionally:
 (setq nerd-icons-corfu-mapping
-      `((array ,(nerd-icons-codicon "nf-cod-symbol_array") :face font-lock-type-face)
-        (boolean ,(nerd-icons-codicon "nf-cod-symbol_boolean") :face font-lock-builtin-face)
+      '((array :style "cod" :icon "symbol_array" :face font-lock-type-face)
+        (boolean :style "cod" :icon "symbol_boolean" :face font-lock-builtin-face)
         ;; ...
-        (t ,(nerd-icons-codicon "nf-cod-code") :face font-lock-warning-face)))
+        (t :style "cod" :icon "code" :face font-lock-warning-face)))
         ;; Remember to add an entry for `t', the library uses that as default.
+
+;; The Custom interface is also supported for tuning the variable above.
 #+end_src
