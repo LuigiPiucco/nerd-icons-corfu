@@ -42,7 +42,7 @@
 
 (defgroup nerd-icons-corfu
   nil
-  "Icons for Corfu via Nerd Icons"
+  "Icons for Corfu via Nerd Icons."
   :group 'nerd-icons)
 
 (define-widget 'nerd-icons-corfu-icon-type 'plist
@@ -114,8 +114,8 @@ to represent the default icon, and must be present."
 (defun nerd-icons-corfu-formatter (_)
   "A margin formatter for Corfu, adding icons.
 
-It receives METADATA and outputs a function that takes a candidate and returns
-the icon."
+It receives METADATA, ignores it, and outputs a function that takes a candidate
+and returns the icon."
   (when-let ((kindfunc (plist-get completion-extra-properties :company-kind)))
     (lambda (cand)
       (when-let* ((kind (funcall kindfunc cand))
