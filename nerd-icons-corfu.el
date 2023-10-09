@@ -118,8 +118,8 @@ It receives METADATA, ignores it, and outputs a function that takes a candidate
 and returns the icon."
   (when-let ((kindfunc (plist-get completion-extra-properties :company-kind)))
     (lambda (cand)
-      (when-let* ((kind (funcall kindfunc cand))
-                  (icon-entry (cdr (assq (or kind t) nerd-icons-corfu-mapping)))
+      (when-let* ((kind (or (funcall kindfunc cand) t))
+                  (icon-entry (cdr (assq kind nerd-icons-corfu-mapping)))
                   (style (plist-get icon-entry :style))
                   (icon (plist-get icon-entry :icon))
                   (icon-fun (intern (concat "nerd-icons-" style "icon")))
