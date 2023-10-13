@@ -124,13 +124,11 @@ and returns the icon."
                   (icon (plist-get icon-entry :icon))
                   (icon-fun (intern (concat "nerd-icons-" style "icon")))
                   (icon-name (concat "nf-" style "-" icon))
-                  (str (condition-case-unless-debug nil (funcall icon-fun icon-name)
+                  (face (plist-get icon-entry :face))
+                  (str (condition-case-unless-debug nil (funcall icon-fun icon-name :face face)
                          (error nil)))
-                  (space (propertize " " 'display '(space :width 1)))
-                  (str (concat " " str space)))
-        (when-let ((extra-face (plist-get icon-entry :face)))
-          (put-text-property 0 3 'face extra-face str))
-        str))))
+                  (space (propertize " " 'display '(space :width 1))))
+        (concat " " str space)))))
 
 (provide 'nerd-icons-corfu)
 ;;; nerd-icons-corfu.el ends here
