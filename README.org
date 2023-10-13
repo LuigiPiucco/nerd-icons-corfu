@@ -13,7 +13,7 @@ Below if a screenshot of the GUI version.
 Note that you need a [[https://www.nerdfonts.com/#home][Nerd Font]] installed for it to work.
 
 * Usage
-~nerd-icons-corfu~ is (going to be) on [[https://melpa.org/#/nerd-icons-corfu][Melpa]]. You can install it with built-in
+~nerd-icons-corfu~ is on [[https://melpa.org/#/nerd-icons-corfu][Melpa]]. You can install it with built-in
 ~M-x package-install~.
 
 To use it, add ~nerd-icons-corfu-formatter~ to ~corfu-margin-formatters~, and
