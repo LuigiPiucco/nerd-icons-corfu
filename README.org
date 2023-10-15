@@ -33,20 +33,20 @@ maybe tweak the icons to your linking in ~nerd-icons-corfu-mapping~:
 #+end_src
 
 * Difference from ~kind-icon~
-[[https://github.com/jdtsmith/kind-icon][~kind-icon~]] is another, more well-known package that adds icons to Corfu. At a
+[[https://github.com/jdtsmith/kind-icon][kind-icon]] is another, more well-known package that adds icons to Corfu. At a
 glance, this package may seem redundant. However, there are key differences in
 goals and methods, outlined in the following:
 
-1. Though kind-icon focuses on Corfu, it's more-or-less agnostic, you can use it
-   for ~company-mode~, for instance. This package is more limited in regard to
-   scope: it implements icons for Corfu via Nerd Fonts, and only that.
+1. Though ~kind-icon~ focuses on Corfu, it's more-or-less agnostic, you can use
+   it for ~company-mode~, for instance. This package is more limited in regard
+   to scope: it implements icons for Corfu via Nerd Fonts, and only that.
 2. ~kind-icon~ uses [[https://github.com/rougier/svg-lib][svg-lib]] under the hood, and it actually draws images for the
    icons. There is overhead related to this and the method requires a graphical
    display (on terminal, it only adds plaintext), therefore being less portable.
    Here the provider is [[https://github.com/rainstormstudio/nerd-icons.el][nerd-icons.el]], and the icons are actually Unicode text
    with a special font.
 
-Additionally, [[https://github.com/rainstormstudio/nerd-icons.el#use-nerd-icons-with-corfu][it is possible to use ~nerd-icons.el~ with ~kind-icon~]], but the
+Additionally, [[https://github.com/rainstormstudio/nerd-icons.el#use-nerd-icons-with-corfu][it is possible to use nerd-icons.el with kind-icon]], but the
 setup required is non-trivial, and it feels like overkill to bring in SVG
 drawing capabilities to render glyph text.
 
