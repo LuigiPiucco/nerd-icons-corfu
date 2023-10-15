@@ -6,7 +6,7 @@
 ;; Author: Luigi Sartor Piucco <luigipiucco@gmail.com>
 ;; Maintainer: Luigi Sartor Piucco <luigipiucco@gmail.com>
 ;; Created: September 21, 2023
-;; Version: 0.2.0
+;; Version: 0.3.0
 ;; Keywords: convenience, files, icons
 ;; Homepage: https://github.com/LuigiPiucco/nerd-icons-corfu
 ;; Package-Requires: ((emacs "27.1") (nerd-icons "0.1.0"))
