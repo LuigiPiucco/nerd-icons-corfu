@@ -128,7 +128,7 @@ and returns the icon."
              (face (plist-get icon-entry :face))
              (str (or (and (fboundp icon-fun) (funcall icon-fun icon-name :face face)) "?"))
              (space (propertize " " 'display '(space :width 0.5))))
-        (concat " " str space)))))
+        (concat space str " ")))))
 
 (provide 'nerd-icons-corfu)
 ;;; nerd-icons-corfu.el ends here
