@@ -110,6 +110,20 @@ to represent the default icon, and must be present."
   :type '(alist :key-type symbol :value-type nerd-icons-corfu-icon-type)
   :group 'nerd-icons-corfu)
 
+(defun nerd-icons-corfu--get-by-kind (kind)
+  "Returns the icon glyph for kind KIND.
+
+The mapping of kind -> icon is defined by the user in
+`nerd-icons-corfu-mapping'."
+  (let* ((icon-entry (or (alist-get (or kind t) nerd-icons-corfu-mapping)
+                         (alist-get t nerd-icons-corfu-mapping)))
+         (style (plist-get icon-entry :style))
+         (icon (plist-get icon-entry :icon))
+         (icon-fun (intern (concat "nerd-icons-" style "icon")))
+         (icon-name (concat "nf-" style "-" icon))
+         (face (plist-get icon-entry :face)))
+    (or (and (fboundp icon-fun) (funcall icon-fun icon-name :face face)) "?")))
+
 ;;;###autoload
 (defun nerd-icons-corfu-formatter (_)
   "A margin formatter for Corfu, adding icons.
@@ -119,16 +133,9 @@ and returns the icon."
   (when-let ((kindfunc (plist-get completion-extra-properties :company-kind)))
     (lambda (cand)
       (let* ((kind (funcall kindfunc cand))
-             (icon-entry (or (alist-get (or kind t) nerd-icons-corfu-mapping)
-                             (alist-get t nerd-icons-corfu-mapping)))
-             (style (plist-get icon-entry :style))
-             (icon (plist-get icon-entry :icon))
-             (icon-fun (intern (concat "nerd-icons-" style "icon")))
-             (icon-name (concat "nf-" style "-" icon))
-             (face (plist-get icon-entry :face))
-             (str (or (and (fboundp icon-fun) (funcall icon-fun icon-name :face face)) "?"))
+             (glyph (nerd-icons-corfu--get-by-kind kind))
              (space (propertize " " 'display '(space :width 0.5))))
-        (concat space str " ")))))
+        (concat space glyph " ")))))
 
 (provide 'nerd-icons-corfu)
 ;;; nerd-icons-corfu.el ends here

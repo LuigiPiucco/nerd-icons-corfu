@@ -17,7 +17,7 @@ Note that you need a [[https://www.nerdfonts.com/#home][Nerd Font]] installed fo
 ~M-x package-install~.
 
 To use it, add ~nerd-icons-corfu-formatter~ to ~corfu-margin-formatters~, and
-maybe tweak the icons to your linking in ~nerd-icons-corfu-mapping~:
+maybe tweak the icons to your liking in ~nerd-icons-corfu-mapping~:
 #+begin_src emacs-lisp
 (add-to-list 'corfu-margin-formatters #'nerd-icons-corfu-formatter)
 
