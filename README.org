@@ -6,7 +6,7 @@
 
 Nerd-icons-corfu.el is a library for adding icons to completions in [[https://github.com/minad/corfu][Corfu]]. It
 uses [[https://github.com/rainstormstudio/nerd-icons.el][nerd-icons.el]] under the hood and, as such, works on both GUI and terminal.
-Below if a screenshot of the GUI version.
+Below is a screenshot of the GUI version.
 
 [[file:screenshots/gui.png]]
 
