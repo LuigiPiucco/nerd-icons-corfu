@@ -135,7 +135,7 @@ and returns the icon."
       (let* ((kind (funcall kindfunc cand))
              (glyph (nerd-icons-corfu--get-by-kind kind))
              (space (propertize " " 'display '(space :width 0.5))))
-        (concat space glyph " ")))))
+        (concat space glyph space)))))
 
 (provide 'nerd-icons-corfu)
 ;;; nerd-icons-corfu.el ends here
