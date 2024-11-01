@@ -46,7 +46,7 @@ goals and methods, outlined in the following:
    Here the provider is [[https://github.com/rainstormstudio/nerd-icons.el][nerd-icons.el]], and the icons are actually Unicode text
    with a special font.
 
-Additionally, [[https://github.com/rainstormstudio/nerd-icons.el#use-nerd-icons-with-corfu][it is possible to use nerd-icons.el with kind-icon]], but the
+Additionally, [[https://github.com/rainstormstudio/nerd-icons.el/tree/b7b0f3bd2b2a2632da2b3cd1da48c7dda4d94f79#use-nerd-icons-with-corfu][it is possible to use nerd-icons.el with kind-icon]], but the
 setup required is non-trivial, and it feels like overkill to bring in SVG
 drawing capabilities to render glyph text.
 
