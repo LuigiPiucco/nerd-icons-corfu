@@ -124,18 +124,28 @@ The mapping of kind -> icon is defined by the user in
          (face (plist-get icon-entry :face)))
     (or (and (fboundp icon-fun) (funcall icon-fun icon-name :face face)) "?")))
 
+(defconst nerd-icons-corfu--space
+  (if (display-graphic-p)
+      (propertize " " 'display '(space :width 0.5))
+    " ")
+  "Space string to be used around the icon, to form a gap on either side.
+
+The main factor here is whether we're running on terminal or graphical.")
+
 ;;;###autoload
 (defun nerd-icons-corfu-formatter (_)
   "A margin formatter for Corfu, adding icons.
 
 It receives METADATA, ignores it, and outputs a function that takes a candidate
 and returns the icon."
-  (when-let ((kindfunc (plist-get completion-extra-properties :company-kind)))
+  (and-let* ((kindfunc (plist-get completion-extra-properties :company-kind)))
     (lambda (cand)
       (let* ((kind (funcall kindfunc cand))
-             (glyph (nerd-icons-corfu--get-by-kind kind))
-             (space (propertize " " 'display '(space :width 0.5))))
-        (concat space glyph space)))))
+             (glyph (nerd-icons-corfu--get-by-kind kind)))
+        (concat
+          (and (display-graphic-p) nerd-icons-corfu--space)
+          glyph
+          nerd-icons-corfu--space)))))
 
 (provide 'nerd-icons-corfu)
 ;;; nerd-icons-corfu.el ends here
