@@ -142,6 +142,9 @@ and returns the icon."
     (lambda (cand)
       (let* ((kind (funcall kindfunc cand))
              (glyph (nerd-icons-corfu--get-by-kind kind)))
+        (if (eq kind 'file)
+            (setq glyph (nerd-icons-icon-for-file
+                         (substring-no-properties cand))))
         (concat
           (and (display-graphic-p) nerd-icons-corfu--space)
           glyph
