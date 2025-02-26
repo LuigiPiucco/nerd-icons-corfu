@@ -25,6 +25,9 @@ maybe tweak the icons to your liking in ~nerd-icons-corfu-mapping~:
 (setq nerd-icons-corfu-mapping
       '((array :style "cod" :icon "symbol_array" :face font-lock-type-face)
         (boolean :style "cod" :icon "symbol_boolean" :face font-lock-builtin-face)
+        ;; You can alternatively specify a function to perform the mapping,
+        ;; use this when knowing the exact completion candidate is important.
+        (file :fn nerd-icons-icon-for-file :face font-lock-string-face)
         ;; ...
         (t :style "cod" :icon "code" :face font-lock-warning-face)))
         ;; Remember to add an entry for `t', the library uses that as default.

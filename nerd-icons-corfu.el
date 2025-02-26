@@ -46,7 +46,7 @@
   :group 'nerd-icons)
 
 (define-widget 'nerd-icons-corfu-icon-type 'plist
-  "The type of an icon mapping."
+  "The type of a static icon selection."
   :tag "Icon parameters"
   :options '((:style (choice (const :tag "wicon" "w")
                              (const :tag "faicon" "fa")
@@ -59,6 +59,11 @@
                              (const :tag "pomicon" "pom")
                              (const :tag "sucicon" "suc")))
              (:icon string)
+             (:face face)))
+(define-widget 'nerd-icons-corfu-function-type 'plist
+  "The type of a dynamic icon selection."
+  :tag "Icon provider"
+  :options '((:fn function)
              (:face face)))
 
 (defcustom nerd-icons-corfu-mapping
@@ -74,8 +79,8 @@
     (enum :style "cod" :icon "symbol_enum" :face font-lock-builtin-face)
     (event :style "cod" :icon "symbol_event" :face font-lock-warning-face)
     (field :style "cod" :icon "symbol_field" :face font-lock-variable-name-face)
-    (file :style "cod" :icon "symbol_file" :face font-lock-string-face)
-    (folder :style "cod" :icon "folder" :face font-lock-doc-face)
+    (file :fn nerd-icons-icon-for-file :face font-lock-string-face)
+    (folder :fn nerd-icons-icon-for-dir :face font-lock-string-face)
     (interface :style "cod" :icon "symbol_interface" :face font-lock-type-face)
     (keyword :style "cod" :icon "symbol_keyword" :face font-lock-keyword-face)
     (macro :style "cod" :icon "symbol_misc" :face font-lock-keyword-face)
@@ -100,14 +105,24 @@
     (t :style "cod" :icon "code" :face font-lock-warning-face))
   "Mapping of completion kinds to icons.
 
-It should be a list of elements with the form (KIND :style ICON-STY :icon
-ICON-NAME [:face FACE]).  KIND is a symbol determining what the completion is,
-and comes from calling the `:company-kind' property of the completion. ICON-STY
-is a string with the icon style to use, from those available in Nerd Fonts.
-ICON-NAME is a string with the name of the icon.  FACE, if present, is applied
-to the icon, mainly for its color. The special t symbol should be used for KIND
-to represent the default icon, and must be present."
-  :type '(alist :key-type symbol :value-type nerd-icons-corfu-icon-type)
+There are two possible types for the values of this alist, static icon
+parameters or a custom function that should receive the completion candidate and
+return the icon.
+
+From here on, KIND is a symbol determining what the completion is, and comes
+from calling the `:company-kind' property of the completion. The special t
+symbol should be used for KIND to represent the default icon, and must be
+present. This applies to both element variants.
+
+In the first case, the elements should have the form (KIND :style ICON-STY :icon
+ICON-NAME [:face FACE]). ICON-STY is a string with the icon style to use, from
+those available in Nerd Fonts.  ICON-NAME is a string with the name of the icon.
+FACE, if present, is applied to the icon, mainly for its color.
+
+In case of more complex customizations that need to know the completion
+candidate itself, one can use a mapping like (KIND ICON-FN), and ICON-FN will be
+called with the candidate to return the icon."
+  :type '(alist :key-type symbol :value-type (choice nerd-icons-corfu-icon-type nerd-icons-corfu-function-type))
   :group 'nerd-icons-corfu)
 
 (defun nerd-icons-corfu--get-by-kind (kind)
@@ -141,14 +156,14 @@ and returns the icon."
   (and-let* ((kindfunc (plist-get completion-extra-properties :company-kind)))
     (lambda (cand)
       (let* ((kind (funcall kindfunc cand))
-             (glyph (nerd-icons-corfu--get-by-kind kind)))
-        (if (eq kind 'file)
-            (setq glyph (nerd-icons-icon-for-file
-                         (substring-no-properties cand))))
+             (glyph (if-let* ((args (alist-get kind nerd-icons-corfu-mapping))
+                              (fn (plist-get args :fn)))
+                        (funcall fn (substring-no-properties cand))
+                      (nerd-icons-corfu--get-by-kind kind))))
         (concat
-          (and (display-graphic-p) nerd-icons-corfu--space)
-          glyph
-          nerd-icons-corfu--space)))))
+         (and (display-graphic-p) nerd-icons-corfu--space)
+         glyph
+         nerd-icons-corfu--space)))))
 
 (provide 'nerd-icons-corfu)
 ;;; nerd-icons-corfu.el ends here
