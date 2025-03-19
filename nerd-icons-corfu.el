@@ -139,13 +139,24 @@ The mapping of kind -> icon is defined by the user in
          (face (plist-get icon-entry :face)))
     (or (and (fboundp icon-fun) (funcall icon-fun icon-name :face face)) "?")))
 
-(defconst nerd-icons-corfu--space
+(defun nerd-icons-corfu--eval-space ()
+  "Evaluate which space (full or half-width) should be used."
   (if (display-graphic-p)
       (propertize " " 'display '(space :width 0.5))
-    " ")
+    " "))
+
+(defconst nerd-icons-corfu--space (nerd-icons-corfu--eval-space)
   "Space string to be used around the icon, to form a gap on either side.
 
 The main factor here is whether we're running on terminal or graphical.")
+
+(defun nerd-icons-corfu--refresh-space ()
+  "Refresh the value of `nerd-icons-corfu--space'."
+  (setq nerd-icons-corfu--space (nerd-icons-corfu--eval-space)))
+
+;; Refresh the space, since when started as a headless server, Emacs will set
+;; the wrong value before a frame is created.
+(add-hook 'server-after-make-frame-hook #'nerd-icons-corfu--refresh-space)
 
 ;;;###autoload
 (defun nerd-icons-corfu-formatter (_)
