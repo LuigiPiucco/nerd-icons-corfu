@@ -119,14 +119,15 @@ those available in Nerd Fonts.  ICON-NAME is a string with the name of the icon.
 FACE, if present, is applied to the icon, mainly for its color.  The face of the
 final icon chosen is the result of composing FACE with what `nerd-icons' already
 propertizes into the icon, because otherwise one may override the other.  Thus,
-the property's form will be something like `(FACE :family \"Your Symbols Font\" ...)'.
+the property's form will be something like
+`(FACE :family \"Your Symbols Font\" ...)'.
 
 In case of more complex customizations that need to know the completion
 candidate itself, one can use a mapping like (KIND :fn ICON-FN [:face FACE]),
 and ICON-FN will be called with the candidate to return the icon.  In this case,
-if FACE is present, it will be added to the returned icon unconditionally.  Thus,
-if the face depends on the candidate as well, FACE should be absent and ICON-FN
-should return a propertized string.
+if FACE is present, it will be added to the returned icon unconditionally.
+Thus, if the face depends on the candidate as well, FACE should be absent and
+ICON-FN should return a propertized string.
 
 In previous versions of this package, a mapping for KIND t was required to be
 present in the list, but it's been made optional, and removed from the default
@@ -142,8 +143,8 @@ icon for that becomes an indication of missing KIND entries."
   "Returns the icon glyph for kind KIND, possibly checking CAND.
 
 The mapping of kind -> icon is defined by the user in
-`nerd-icons-corfu-mapping'.  CAND is used if the mapping for the selected KIND is
-dynamic (has an `:fn' property)."
+`nerd-icons-corfu-mapping'.  CAND is used if the mapping for the selected KIND
+is dynamic (has an `:fn' property)."
   (let* ((icon-entry (or (alist-get (or kind t) nerd-icons-corfu-mapping)
                          (alist-get t nerd-icons-corfu-mapping)))
          (face-from-entry (plist-get icon-entry :face))
